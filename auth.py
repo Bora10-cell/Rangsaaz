@@ -50,13 +50,19 @@ def get_current_user():
     return response.user
 
 
+
 def logout_user():
-    """Sign out and clear local authentication state."""
+    """
+    Sign out the current user and clear
+    their personal workspace.
+    """
 
     client = get_supabase_client()
 
     try:
         client.auth.sign_out()
+
     finally:
-        st.session_state.pop("supabase_client", None)
-        st.session_state.pop("logged_in_user", None)
+        # Clear all Streamlit session values,
+        # including uploaded images and widgets.
+        st.session_state.clear()

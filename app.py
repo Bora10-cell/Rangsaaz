@@ -49,7 +49,7 @@ st.set_page_config(
 
 def render_html(content):
     """
-    Display multiline HTML without Streamlit
+    Render multiline HTML without Streamlit
     interpreting it as a code block.
     """
 
@@ -68,10 +68,8 @@ def render_html(content):
 
 def safe_hex(value):
     """
-    Validate a HEX color before using it in HTML.
-
-    Example:
-        #DF678F
+    Validate HEX codes before inserting
+    them into HTML or palette images.
     """
 
     value = str(value).strip()
@@ -84,12 +82,15 @@ def safe_hex(value):
 
 def create_palette_image(colors):
     """
-    Create a downloadable PNG containing
-    all palette colors and their HEX codes.
+    Create a PNG containing color swatches
+    and their HEX codes.
     """
 
     width = 1000
     height = 300
+
+    if not colors:
+        raise ValueError("Palette cannot be empty.")
 
     palette_image = Image.new(
         "RGB",
@@ -100,9 +101,6 @@ def create_palette_image(colors):
     draw = ImageDraw.Draw(palette_image)
 
     count = len(colors)
-
-    if count == 0:
-        raise ValueError("Palette cannot be empty.")
 
     for index, color in enumerate(colors):
 
@@ -130,6 +128,25 @@ def create_palette_image(colors):
     )
 
     return buffer.getvalue()
+
+
+def clear_workspace():
+    """
+    Clear image-generation and palette-related
+    widget state when the user changes accounts.
+
+    Do not remove the authenticated Supabase
+    client from session state here.
+    """
+
+    workspace_keys = [
+        "palette_image_uploader",
+        "palette_color_slider",
+        "new_palette_name"
+    ]
+
+    for key in workspace_keys:
+        st.session_state.pop(key, None)
 
 
 # ==========================================
@@ -168,6 +185,33 @@ try:
 
 except Exception:
     current_user = None
+
+
+# Detect when a different user logs in.
+# This also handles account changes that
+# happen without using the Logout button.
+
+current_user_id = (
+    str(current_user.id)
+    if current_user is not None
+    else None
+)
+
+if "last_authenticated_user_id" not in st.session_state:
+    st.session_state.last_authenticated_user_id = (
+        current_user_id
+    )
+
+elif (
+    st.session_state.last_authenticated_user_id
+    != current_user_id
+):
+
+    clear_workspace()
+
+    st.session_state.last_authenticated_user_id = (
+        current_user_id
+    )
 
 
 # ==========================================
@@ -278,6 +322,12 @@ if current_user is None:
                             and response.session
                         ):
 
+                            clear_workspace()
+
+                            st.session_state[
+                                "last_authenticated_user_id"
+                            ] = str(response.user.id)
+
                             st.rerun()
 
                         else:
@@ -364,6 +414,12 @@ if current_user is None:
                             and response.session
                         ):
 
+                            clear_workspace()
+
+                            st.session_state[
+                                "last_authenticated_user_id"
+                            ] = str(response.user.id)
+
                             st.rerun()
 
                         else:
@@ -412,10 +468,19 @@ with header_right:
     ):
 
         try:
+
             logout_user()
+
+            clear_workspace()
+
+            st.session_state[
+                "last_authenticated_user_id"
+            ] = None
+
             st.rerun()
 
         except Exception:
+
             st.error(
                 "Logout failed. Please try again."
             )
@@ -526,14 +591,16 @@ with left:
 
     uploaded_file = st.file_uploader(
         "Upload your favorite picture ♡",
-        type=["png", "jpg", "jpeg", "webp"]
+        type=["png", "jpg", "jpeg", "webp"],
+        key="palette_image_uploader"
     )
 
     n_colors = st.slider(
         "How many colors shall we find?",
         min_value=2,
         max_value=10,
-        value=5
+        value=5,
+        key="palette_color_slider"
     )
 
     if uploaded_file is not None:
@@ -541,6 +608,7 @@ with left:
         try:
 
             image = Image.open(uploaded_file)
+
             image.load()
 
             st.image(
@@ -625,6 +693,7 @@ with right:
         for start in range(0, len(colors), 3):
 
             row_colors = colors[start:start + 3]
+
             columns = st.columns(3)
 
             for column, color in zip(
