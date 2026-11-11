@@ -1,0 +1,25 @@
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local database
+palettes.db
+palettes.db-journal
+palettes.db-wal
+palettes.db-shm
+
+# Private environment variables
+.env
+.streamlit/secrets.toml
+
+# Editor files
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db

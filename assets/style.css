@@ -1,0 +1,897 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=DM+Serif+Display&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --cream: #feeddd;
+    --peach: #fec1b6;
+    --pink: #f3a6ba;
+    --rose: #df678f;
+    --lavender: #9391bc;
+    --teal: #7abcc4;
+    --ink: #753c54;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.stApp {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Nunito', sans-serif;
+}
+
+.block-container {
+    max-width: 1240px;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+#MainMenu,
+footer,
+header[data-testid="stHeader"] {
+    visibility: hidden;
+}
+
+/* NAVIGATION */
+
+.rang-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #fffaf1;
+    border-radius: 24px;
+    padding: 17px 25px;
+    margin-bottom: 22px;
+    box-shadow: 0 5px 20px #753c5412;
+}
+
+.nav-logo {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink) !important;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: var(--rose) !important;
+}
+
+/* HERO */
+
+.rang-hero {
+    background: var(--rose);
+    border-radius: 34px;
+    min-height: 390px;
+    padding: 55px 60px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 55px;
+}
+
+.hero-eyebrow {
+    color: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.hero-title {
+    font-family: 'Baloo 2', sans-serif;
+    color: #fffaf1;
+    font-size: clamp(85px, 13vw, 170px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -5px;
+    margin: 5px 0;
+    position: relative;
+    z-index: 2;
+    animation: titleEnter 1s ease both;
+}
+
+.hero-description {
+    font-family: 'DM Serif Display', serif;
+    color: #fffaf1;
+    font-size: 28px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-small {
+    color: #fffaf1;
+    font-size: 15px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-flower {
+    position: absolute;
+    right: 35px;
+    top: 25px;
+    width: 290px;
+    opacity: 0.95;
+    animation: flowerFloat 5s ease-in-out infinite;
+}
+
+.hero-button {
+    display: inline-block;
+    margin-top: 25px;
+    background: var(--cream);
+    color: var(--ink) !important;
+    padding: 13px 26px;
+    border-radius: 30px;
+    text-decoration: none !important;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.25s;
+}
+
+.hero-button:hover {
+    transform: translateY(-4px);
+}
+
+/* SECTIONS */
+
+.section-heading {
+    font-family: 'DM Serif Display', serif;
+    color: var(--ink);
+    font-size: 40px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.section-caption {
+    color: #806879;
+    font-size: 16px;
+    margin-bottom: 22px;
+}
+
+.rang-card {
+    background: #fffaf1;
+    border-radius: 28px;
+    padding: 25px;
+    border: 2px solid #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 22px #753c5410;
+}
+
+.empty-card {
+    background: #fffaf1;
+    border-radius: 28px;
+    padding: 50px 25px;
+    text-align: center;
+    min-height: 250px;
+    border: 2px solid white;
+}
+
+.empty-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    color: var(--rose);
+}
+
+.empty-text {
+    color: #806879;
+    font-size: 15px;
+}
+
+/* UPLOAD */
+
+[data-testid="stFileUploader"] {
+    background: #fffaf1;
+    padding: 14px;
+    border-radius: 24px;
+}
+
+[data-testid="stFileUploaderDropzone"] {
+    background: #feeddd !important;
+    border: 2px dashed #df678f !important;
+    border-radius: 18px !important;
+}
+
+[data-testid="stFileUploaderDropzone"] * {
+    color: var(--ink);
+}
+
+[data-testid="stImage"] img {
+    border-radius: 20px;
+}
+
+/* PALETTE CARDS */
+
+.palette-card {
+    background: #fffaf1;
+    padding: 12px;
+    border-radius: 22px;
+    margin-bottom: 15px;
+    box-shadow: 0 6px 15px #753c5412;
+    transition: transform 0.3s;
+}
+
+.palette-card:hover {
+    transform: translateY(-6px);
+}
+
+.color-swatch {
+    height: 115px;
+    border-radius: 15px;
+}
+
+.color-code {
+    text-align: center;
+    color: var(--ink);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    margin-top: 12px;
+    font-size: 17px;
+}
+
+.color-share {
+    text-align: center;
+    color: #806879;
+    font-size: 13px;
+}
+
+/* BUTTONS */
+
+.stButton > button,
+.stDownloadButton > button {
+    background: var(--rose);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 800;
+    padding: 12px 24px;
+}
+
+.stButton > button:hover,
+.stDownloadButton > button:hover {
+    background: var(--lavender);
+    color: white;
+    border: none;
+}
+
+/* SAVED SECTION */
+
+.saved-section {
+    background: var(--lavender);
+    padding: 35px;
+    border-radius: 30px;
+    margin-top: 40px;
+}
+
+.saved-section h2 {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 38px;
+}
+
+.saved-section p {
+    color: #fffaf1;
+}
+
+/* ABOUT */
+
+.about-section {
+    background: var(--peach);
+    border-radius: 30px;
+    padding: 40px;
+    margin-top: 45px;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--ink);
+    font-size: 38px;
+}
+
+.about-section p {
+    color: var(--ink);
+    font-size: 16px;
+}
+
+/* ANIMATIONS */
+
+@keyframes titleEnter {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flowerFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 750px) {
+    .rang-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .rang-hero {
+        padding: 30px 22px;
+        min-height: 340px;
+    }
+
+    .hero-title {
+        font-size: clamp(65px, 14vw, 100px);
+        letter-spacing: -2px;
+    }
+
+    .hero-flower {
+        width: 145px;
+        right: -20px;
+        top: 150px;
+        opacity: 0.45;
+    }
+
+    .section-heading {
+        font-size: 32px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+
+
+
+/* ======================================
+   PART 5C — PLAYFUL VISUAL IMPROVEMENTS
+   ====================================== */
+
+/* Soft background texture */
+
+.stApp {
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            #fec1b655,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 65%,
+            #9391bc35,
+            transparent 35%
+        ),
+        #feeddd;
+}
+
+/* Sticky navigation */
+
+.rang-nav {
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(12px);
+}
+
+/* Decorative daisy on the hero */
+
+.rang-hero::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    left: -20px;
+    bottom: -20px;
+
+    background-image: url("daisy.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    animation: daisySpin 14s linear infinite;
+}
+
+/* Floral divider after the hero */
+
+.rang-hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 55px;
+    bottom: 0;
+    left: 0;
+
+    background:
+        radial-gradient(
+            circle at 20px 0,
+            transparent 19px,
+            #feeddd 20px
+        );
+
+    background-size: 40px 40px;
+    opacity: 0.85;
+}
+
+/* Cute card hover animations */
+
+.rang-card,
+.empty-card,
+.palette-card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.rang-card:hover,
+.empty-card:hover,
+.palette-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px #753c5420;
+}
+
+/* Floral decoration on saved section */
+
+.saved-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.saved-section::after {
+    content: "✿";
+    position: absolute;
+    right: 25px;
+    bottom: -35px;
+    font-size: 130px;
+    color: #feeddd45;
+    pointer-events: none;
+}
+
+/* About section decoration */
+
+.about-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: "✿";
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-size: 65px;
+    color: #df678f70;
+    animation: flowerFloat 5s ease-in-out infinite;
+}
+
+/* Scroll-triggered reveal animation */
+
+@keyframes revealOnScroll {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@supports (animation-timeline: view()) {
+    .empty-card,
+    .palette-card,
+    .saved-section,
+    .about-section {
+        animation: revealOnScroll linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 85%;
+    }
+}
+
+/* Daisy rotation */
+
+@keyframes daisySpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Floating flower */
+
+.hero-flower {
+    filter: drop-shadow(0 12px 12px #753c5420);
+}
+
+/* Navigation link underline */
+
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: #df678f;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 750px) {
+    .rang-nav {
+        position: relative;
+        top: 0;
+    }
+
+    .rang-hero::before {
+        width: 65px;
+        height: 65px;
+    }
+
+    .about-section::before {
+        font-size: 40px;
+    }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .rang-hero::before,
+    .about-section::before,
+    .empty-card,
+    .palette-card,
+    .saved-section,
+    .about-section {
+        animation: none !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+
+
+
+/* ======================================
+   HERO DECORATION FIX
+   ====================================== */
+
+/* Keep the hero clean and rounded */
+
+.rang-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    margin-bottom: 45px;
+    padding-bottom: 55px;
+}
+
+/* Remove the overlapping scalloped borders */
+
+.rang-hero::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Fix the daisy position */
+
+.rang-hero::before {
+    content: "";
+    position: absolute;
+
+    width: 95px;
+    height: 95px;
+
+    left: 20px;
+    bottom: 15px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    opacity: 0.85;
+
+    animation: daisySpin 18s linear infinite;
+
+    pointer-events: none;
+}
+
+/* Keep hero text and button above decorations */
+
+.hero-eyebrow,
+.hero-title,
+.hero-description,
+.hero-small,
+.hero-button {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure the main flower stays inside the hero */
+
+.hero-flower {
+    position: absolute;
+    right: 30px;
+    top: 35px;
+
+    width: 250px;
+    max-width: 30%;
+
+    z-index: 1;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 750px) {
+
+    .rang-hero {
+        padding: 35px 22px 65px;
+        border-radius: 24px;
+    }
+
+    .rang-hero::before {
+        width: 65px;
+        height: 65px;
+        left: 12px;
+        bottom: 10px;
+    }
+
+    .hero-flower {
+        width: 130px;
+        right: 10px;
+        top: 155px;
+        opacity: 0.55;
+    }
+}
+
+/* Respect reduced-motion settings */
+
+@media (prefers-reduced-motion: reduce) {
+    .rang-hero::before {
+        animation: none !important;
+    }
+}
+
+
+
+/* ======================================
+   FINAL HERO FLOWER FIX
+   ====================================== */
+
+/* Keep the hero clean */
+
+.rang-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    padding-bottom: 55px;
+}
+
+/* Remove the old scalloped decoration */
+
+.rang-hero::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Move the daisy away from the button */
+
+.rang-hero::before {
+    content: "";
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    left: auto !important;
+    right: 18px !important;
+    top: auto !important;
+    bottom: 15px !important;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    opacity: 0.9;
+    z-index: 1;
+    pointer-events: none;
+
+    animation: daisySpin 18s linear infinite;
+}
+
+/* Keep button above all decorations */
+
+.hero-button {
+    position: relative;
+    z-index: 5;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 750px) {
+    .rang-hero::before {
+        width: 55px;
+        height: 55px;
+        right: 12px !important;
+        bottom: 12px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rang-hero::before {
+        animation: none !important;
+    }
+}
+
+
+
+/* REMOVE SMALL DAISY COMPLETELY */
+
+.rang-hero::before {
+    content: none !important;
+    display: none !important;
+    animation: none !important;
+}
+
+/* Keep the hero clean */
+
+.rang-hero::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+
+
+/* ==================================
+   PART 5F — SAVED COLOR LIBRARY
+================================== */
+
+.library-heading {
+    text-align: center;
+    margin: 65px 0 35px;
+}
+
+.library-eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #df678f;
+    margin-bottom: 12px;
+}
+
+.library-heading .section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(34px, 5vw, 55px);
+    color: #753c54;
+    margin-bottom: 10px;
+}
+
+.library-heading .section-caption {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    color: #956b7e;
+}
+
+.saved-palette-card {
+    background: #fffaf1;
+    border: 2px solid #ffffff;
+    border-radius: 24px;
+    padding: 13px;
+    margin-bottom: 10px;
+    box-shadow: 0 7px 22px rgba(117, 60, 84, 0.08);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.saved-palette-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(117, 60, 84, 0.14);
+}
+
+.saved-palette-strip {
+    display: flex;
+    overflow: hidden;
+    border-radius: 16px;
+    min-height: 75px;
+}
+
+.saved-palette-info {
+    padding: 14px 7px 6px;
+}
+
+.saved-palette-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: #753c54;
+    margin-bottom: 5px;
+    overflow-wrap: anywhere;
+}
+
+.saved-palette-date {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    color: #a17b8b;
+    margin-bottom: 10px;
+}
+
+.saved-palette-count {
+    display: inline-block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #df678f;
+    background: #feeddd;
+    border-radius: 30px;
+    padding: 6px 12px;
+}
+
+@media (max-width: 750px) {
+    .library-heading {
+        margin-top: 45px;
+    }
+
+    .saved-palette-name {
+        font-size: 19px;
+    }
+
+    .saved-palette-strip {
+        min-height: 65px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .saved-palette-card {
+        transition: none;
+    }
+}

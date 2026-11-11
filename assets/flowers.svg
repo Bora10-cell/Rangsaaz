@@ -1,0 +1,50 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 400 360">
+
+  <g transform="translate(195 185)">
+
+    <!-- Flower stem -->
+    <path d="M0 20 Q-10 90 0 150"
+          stroke="#587a65"
+          stroke-width="9"
+          fill="none"
+          stroke-linecap="round"/>
+
+    <!-- Leaves -->
+    <path d="M-3 100 Q-85 40 -105 90
+             Q-65 135 -3 115"
+          fill="#7abcc4"/>
+
+    <path d="M0 120 Q80 65 95 105
+             Q60 145 0 135"
+          fill="#9391bc"/>
+
+    <!-- Flower petals -->
+    <g fill="#fec1b6">
+      <ellipse cx="0" cy="-65" rx="33" ry="65"/>
+      <ellipse cx="0" cy="65" rx="33" ry="65"/>
+      <ellipse cx="-65" cy="0" rx="65" ry="33"/>
+      <ellipse cx="65" cy="0" rx="65" ry="33"/>
+
+      <ellipse cx="-45" cy="-45" rx="33" ry="58"
+               transform="rotate(-45 -45 -45)"/>
+
+      <ellipse cx="45" cy="-45" rx="33" ry="58"
+               transform="rotate(45 45 -45)"/>
+
+      <ellipse cx="-45" cy="45" rx="33" ry="58"
+               transform="rotate(45 -45 45)"/>
+
+      <ellipse cx="45" cy="45" rx="33" ry="58"
+               transform="rotate(-45 45 45)"/>
+    </g>
+
+    <!-- Flower center -->
+    <circle cx="0" cy="0" r="44" fill="#df678f"/>
+    <circle cx="-12" cy="-8" r="5" fill="#feeddd"/>
+    <circle cx="13" cy="10" r="5" fill="#feeddd"/>
+    <circle cx="13" cy="-13" r="4" fill="#feeddd"/>
+
+  </g>
+</svg>

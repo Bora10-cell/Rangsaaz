@@ -1,0 +1,37 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 120">
+  <path d="M30 60 Q120 30 210 60 T390 60 T570 60 T750 60 T870 60"
+        fill="none" stroke="#9391bc"
+        stroke-width="3" stroke-linecap="round"
+        stroke-dasharray="8 12"/>
+
+  <g transform="translate(250 60)">
+    <g fill="#f3a6ba">
+      <ellipse cy="-22" rx="11" ry="23"/>
+      <ellipse cy="22" rx="11" ry="23"/>
+      <ellipse cx="-22" rx="23" ry="11"/>
+      <ellipse cx="22" rx="23" ry="11"/>
+    </g>
+    <circle r="12" fill="#df678f"/>
+  </g>
+
+  <g transform="translate(450 60)">
+    <g fill="#feeddd" stroke="#df678f" stroke-width="2">
+      <ellipse cy="-25" rx="13" ry="25"/>
+      <ellipse cy="25" rx="13" ry="25"/>
+      <ellipse cx="-25" rx="25" ry="13"/>
+      <ellipse cx="25" rx="25" ry="13"/>
+    </g>
+    <circle r="14" fill="#7abcc4"/>
+  </g>
+
+  <g transform="translate(650 60)">
+    <g fill="#fec1b6">
+      <ellipse cy="-22" rx="11" ry="23"/>
+      <ellipse cy="22" rx="11" ry="23"/>
+      <ellipse cx="-22" rx="23" ry="11"/>
+      <ellipse cx="22" rx="23" ry="11"/>
+    </g>
+    <circle r="12" fill="#9391bc"/>
+  </g>
+</svg>
