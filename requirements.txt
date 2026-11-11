@@ -1,5 +1,6 @@
 
 streamlit
-scikit-learn
 numpy
+scikit-learn
 Pillow
+supabase

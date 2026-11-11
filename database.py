@@ -1,64 +1,104 @@
 
-import sqlite3
-import json
-from pathlib import Path
+"""
+Supabase database functions for रंगSAAZ.
+
+Each palette belongs to an authenticated user.
+Supabase Row Level Security (RLS) prevents
+users from accessing other users' palettes.
+"""
+
+from auth import get_supabase_client, get_current_user
 
 
-BASE_DIR = Path(__file__).resolve().parent
-DATABASE_PATH = BASE_DIR / "palettes.db"
+def require_authenticated_user():
+    """
+    Get the verified logged-in user.
 
+    Raise an error if nobody is logged in.
+    """
 
-def get_connection():
-    return sqlite3.connect(DATABASE_PATH)
+    user = get_current_user()
 
+    if user is None:
+        raise PermissionError(
+            "Please log in to access your Color Library."
+        )
 
-def initialize_database():
-    with get_connection() as connection:
-        connection.execute("""
-            CREATE TABLE IF NOT EXISTS palettes (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL,
-                colors TEXT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        """)
+    return user
 
 
 def save_palette(name, colors):
-    if not name.strip():
-        raise ValueError("Please enter a palette name.")
+    """
+    Save a palette to Supabase.
 
-    colors_json = json.dumps(colors)
+    Parameters:
+        name: Palette name, such as Strawberry Daydream.
+        colors: List containing HEX codes and percentages.
+    """
 
-    with get_connection() as connection:
-        connection.execute(
-            "INSERT INTO palettes (name, colors) VALUES (?, ?)",
-            (name.strip(), colors_json)
-        )
+    user = require_authenticated_user()
+
+    client = get_supabase_client()
+
+    response = (
+        client.table("palettes")
+        .insert({
+            "user_id": str(user.id),
+            "name": name,
+            "colors": colors
+        })
+        .execute()
+    )
+
+    return response.data
 
 
 def get_saved_palettes():
-    with get_connection() as connection:
-        rows = connection.execute("""
-            SELECT id, name, colors, created_at
-            FROM palettes
-            ORDER BY id DESC
-        """).fetchall()
+    """
+    Retrieve only the logged-in user's palettes.
+    """
 
-    return [
-        {
-            "id": row[0],
-            "name": row[1],
-            "colors": json.loads(row[2]),
-            "created_at": row[3]
-        }
-        for row in rows
-    ]
+    user = require_authenticated_user()
+
+    client = get_supabase_client()
+
+    response = (
+        client.table("palettes")
+        .select("*")
+        .eq("user_id", str(user.id))
+        .order("created_at", desc=True)
+        .execute()
+    )
+
+    return response.data or []
 
 
 def delete_palette(palette_id):
-    with get_connection() as connection:
-        connection.execute(
-            "DELETE FROM palettes WHERE id = ?",
-            (palette_id,)
-        )
+    """
+    Delete a palette belonging to the current user.
+    """
+
+    user = require_authenticated_user()
+
+    client = get_supabase_client()
+
+    response = (
+        client.table("palettes")
+        .delete()
+        .eq("id", str(palette_id))
+        .eq("user_id", str(user.id))
+        .execute()
+    )
+
+    return response.data
+
+
+def initialize_database():
+    """
+    Compatibility function.
+
+    Supabase already has the palettes table,
+    so no local database initialization is needed.
+    """
+
+    pass
